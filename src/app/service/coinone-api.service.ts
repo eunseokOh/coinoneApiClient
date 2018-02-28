@@ -5,7 +5,7 @@ import 'rxjs/add/operator/map';
 import { HttpClient,HttpParams } from '@angular/common/http'
 @Injectable()
 export class CoinoneApiService {
-  private DEFAULT_URL: string = "http://127.0.0.1:8000/"
+  private DEFAULT_URL: string = "<your server ip address>"
   private feeRate = null;
 
   constructor(private _http: HttpClient) { }
