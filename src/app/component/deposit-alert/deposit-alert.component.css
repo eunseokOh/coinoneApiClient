@@ -1,0 +1,10 @@
+input{
+    border:none;
+    box-sizing: content-box;
+
+}
+
+input:active, input:hover, input:focus{
+    border:  none;
+    outline: none;
+}

@@ -1,0 +1,48 @@
+<div width="100%" align="center">
+  <mat-spinner *ngIf="!coinList" style="position: absolute; top:50%; left:50%; transform: translate(-50%,-50%);"></mat-spinner>
+
+
+  <mat-card style="width:25%; display: inline-block; margin:10px; cursor: pointer; min-width: 262px; background: transparent;"
+    *ngFor="let c of coinList" (click)="movePage(c.currency)">
+    <mat-card-header style="border-bottom: 0.5px solid rgba(200,200,200,.95); margin-bottom: 14px;">
+      <mat-card-title style="font-size: 1.6rem; color:#b5b5b6;">{{c.currency.toUpperCase()}}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content align="left">
+
+      <div class="es-grid-2" [style.color]="c.last > c.yesterday_last ? '#40c358':'#fd2d52'">현재가</div>
+      <div class="es-grid-8" [style.color]="c.last > c.yesterday_last ? '#40c358':'#fd2d52'">{{numberWithCommas(c.last)}}
+        <i class="material-icons" style="position: absolute;  font-weight: bold; color:#40c358;" *ngIf="c.last > c.yesterday_last">arrow_drop_up</i>
+        <i class="material-icons" style="position: absolute;  font-weight: bold; color: #fd2d52;" *ngIf="c.last <= c.yesterday_last">arrow_drop_down</i>
+      </div>
+
+      <div class="es-grid-2" [style.color]="c.first > c.yesterday_first ? '#40c358':'#fd2d52'">시가</div>
+      <div class="es-grid-8" [style.color]="c.first > c.yesterday_first ? '#40c358':'#fd2d52'">{{numberWithCommas(c.first)}}
+        <i class="material-icons" style="position: absolute;  font-weight: bold; color:#40c358;" *ngIf="c.first > c.yesterday_first">arrow_drop_up</i>
+        <i class="material-icons" style="position: absolute;  font-weight: bold; color: #fd2d52;" *ngIf="c.first <= c.yesterday_first">arrow_drop_down</i>
+      </div>
+
+      <div class="es-grid-2" [style.color]="c.high > c.yesterday_high ? '#40c358':'#fd2d52'">고가</div>
+      <div class="es-grid-8" [style.color]="c.high > c.yesterday_high ? '#40c358':'#fd2d52'">{{numberWithCommas(c.high)}}
+        <i class="material-icons" style="position: absolute;  font-weight: bold; color:#40c358; " *ngIf="c.high > c.yesterday_high">arrow_drop_up</i>
+        <i class="material-icons" style="position: absolute;  font-weight: bold; color:#fd2d52;" *ngIf="c.high <= c.yesterday_high">arrow_drop_down</i>
+      </div>
+
+      <div class="es-grid-2" [style.color]="c.low > c.yesterday_low ? '#40c358':'#fd2d52'">저가</div>
+      <div class="es-grid-8" [style.color]="c.low > c.yesterday_low ? '#40c358':'#fd2d52'">{{numberWithCommas(c.low)}}
+        <i class="material-icons" style="position: absolute;  font-weight: bold; color:#40c358;" *ngIf="c.low > c.yesterday_low">arrow_drop_up</i>
+        <i class="material-icons" style="position: absolute;  font-weight: bold; color: #fd2d52;" *ngIf="c.low <= c.yesterday_low">arrow_drop_down</i>
+      </div>
+
+      <div class="es-grid-2" [style.color]="c.volume > c.yesterday_volume ? '#40c358':'#fd2d52'">거래량</div>
+      <div class="es-grid-8" [style.color]="c.volume > c.yesterday_volume ? '#40c358':'#fd2d52'">{{numberWithCommas(c.volume)}}
+        <i class="material-icons" style="position: absolute;  font-weight: bold; color:#40c358;" *ngIf="c.volume > c.yesterday_volume">arrow_drop_up</i>
+        <i class="material-icons" style="position: absolute;  font-weight: bold; color: #fd2d52;" *ngIf="c.volume <= c.yesterday_volume">arrow_drop_down</i>
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+
+
+</div>

@@ -1,0 +1,8 @@
+.bar-bids {
+    fill: cornflowerblue; }
+  .bar-asks {
+    fill: pink; }
+  .depth-chart {
+    display: inline-block;
+    float: left; }
+

@@ -1,0 +1,17 @@
+<h2 mat-dialog-title>{{coinName.toUpperCase()}} Wallet Address</h2>
+<mat-dialog-content >
+
+  <h3 *ngIf="!walletAddress">지갑이 없습니다!</h3>
+
+
+  <h3 *ngIf="walletAddress">Address</h3>
+  <input id="wallet" type="text" *ngIf="walletAddress" value="{{walletAddress}}" spellcheck="false" style="width: 300px; background: transparent; color:white;">
+
+  <h3 *ngIf="walletTag">Tag</h3>
+  <input *ngIf="walletTag"  type="text" value="{{walletTag}}" spellcheck="false" style="width: 300px; background: transparent; color:white;">
+
+</mat-dialog-content>
+<mat-dialog-actions >
+  <button mat-button mat-dialog-close >Cancel</button>
+  <button mat-button [mat-dialog-close]="true"  cdkFocusInitial (click)="copyAddress()" *ngIf="walletAddress">Copy</button>
+</mat-dialog-actions>

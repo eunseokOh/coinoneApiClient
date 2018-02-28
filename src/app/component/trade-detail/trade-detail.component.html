@@ -1,0 +1,93 @@
+<mat-toolbar>Order book</mat-toolbar>
+
+<div *ngIf="showAskChart" style="width: 45%; display: inline-block;">
+  <canvas baseChart height="90%" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors"
+    [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+  </canvas>
+</div>
+
+<div *ngIf="showAskChart" style="width: 45%; display: inline-block;">
+  <canvas baseChart height="80%" [datasets]="lineBidChartData" [labels]="lineBidChartLabels" [options]="lineChartOptions" [colors]="lineBidChartColors"
+    [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+  </canvas>
+</div>
+<mat-spinner *ngIf="!showAskChart" style="position: absolute; top:50%; left:50%; transform: translate(-50%,-50%);"></mat-spinner>
+
+<mat-toolbar>주문</mat-toolbar>
+
+<div style="width: 100%;" align="center">
+
+  <mat-table #table [dataSource]="dataSource" style="width: 40%; display: inline-block; margin:0px 15px 30px 0px;;">
+    <!-- Name Column -->
+    <ng-container matColumnDef="time">
+      <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.time}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="price">
+      <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.price}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="qty">
+      <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.qty}} </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+  <mat-card style="width: 40%; display: inline-block; box-sizing: border-box; vertical-align: top; background: #181B2A; min-width: 450px; ">
+    <mat-tab-group style="color:white;">
+      <mat-tab label="구매">
+        <p align="left" style="width:100%">
+          <mat-form-field style="width:100%;">
+            <span matPrefix>가격(KRW) &nbsp;</span>
+            <input type="text" matInput (input)="onlyNumber($event)" value="{{lineChartLabels[lineChartLabels.length-1]}}" id="buy-krw">
+            <i class="material-icons" matSuffix style="cursor: pointer;">keyboard_arrow_up</i>
+            <i class="material-icons" matSuffix style="cursor: pointer;">keyboard_arrow_down</i>
+          </mat-form-field>
+
+          <mat-form-field style="width:100%;">
+            <span matPrefix>수량({{cCoinName.toUpperCase()}}) &nbsp;</span>
+            <input type="text" matInput  [value]="maxKrwAvail" id="buy-coin">
+            <span matSuffix style="cursor: pointer;" (click)="maxOrder()">최대</span>
+          </mat-form-field>
+        </p>
+        <div align="left" style="margin-bottom: 30px;">
+
+          <p style="width:40%; display: inline-block;">거래 가능</p>
+          <p style="width:58%; display: inline-block;" align="right">{{availKrw}} KRW</p>
+        </div>
+        <button mat-button style="background: gray; width: 90%;" (click)="limitBuy()">구매</button>
+      </mat-tab>
+
+      <mat-tab label="판매">
+          <p align="left" style="width:100%">
+              <mat-form-field style="width:100%;">
+                <span matPrefix>가격(KRW) &nbsp;</span>
+                <input type="text" matInput (input)="onlyNumber($event)" value="{{lineBidChartLabels[0]}}" id="sell-krw">
+                <i class="material-icons" matSuffix style="cursor: pointer;">keyboard_arrow_up</i>
+                <i class="material-icons" matSuffix style="cursor: pointer;">keyboard_arrow_down</i>
+              </mat-form-field>
+    
+              <mat-form-field style="width:100%;">
+                <span matPrefix>수량({{cCoinName.toUpperCase()}}) &nbsp;</span>
+                <input type="text" matInput  [value]="maxCoinAvail" id="sell-coin">
+                <span matSuffix style="cursor: pointer;" (click)="maxCoinAvail = availCoin">최대</span>
+              </mat-form-field>
+            </p>
+            <div align="left" style="margin-bottom: 30px;">
+    
+              <p style="width:40%; display: inline-block;">거래 가능</p>
+              <p style="width:58%; display: inline-block;" align="right">{{availCoin}} {{cCoinName.toUpperCase()}}</p>
+            </div>
+            <button mat-button style="background: gray; width: 90%;" (click)="limitSell()">판매</button>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+
+</div>

@@ -1,0 +1,83 @@
+<div width="100%" align="left">
+  <mat-spinner *ngIf="!dataSource" style="position: absolute; top:50%; left:50%; transform: translate(-50%,-50%);"></mat-spinner>
+
+  <mat-toolbar>계정정보</mat-toolbar>
+  <mat-card style="width: 300px; background: #181B2A;" *ngIf="userInfo">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <i class="material-icons" style="font-size: 2rem;">account_circle</i>
+      </div>
+      <mat-card-title>{{userInfo.mobileInfo.userName}}</mat-card-title>
+      <mat-card-subtitle>{{userInfo.mobileInfo.phoneNumber}}</mat-card-subtitle>
+    </mat-card-header>
+    <!-- <img mat-card-image src="https://s3.ap-northeast-2.amazonaws.com/coinone-cloudflare-landing/open_graph_logo.png"> -->
+    <mat-card-content>
+
+      <div style="width: 30%; " class="es-grid">은행명</div>
+      <div style="width: 68%; " class="es-grid">{{bankName}}</div>
+
+      <div style="width: 30%; " class="es-grid">계좌번호</div>
+      <div style="width: 68%; " class="es-grid">{{userInfo.bankInfo.accountNumber}}</div>
+
+      <div style="width: 30%; " class="es-grid">예금주</div>
+      <div style="width: 68%; " class="es-grid">{{userInfo.bankInfo.depositor}}</div>
+
+      <div style="width: 30%; " class="es-grid">이메일</div>
+      <div style="width: 68%; " class="es-grid">{{userInfo.emailInfo.email}}</div>
+    </mat-card-content>
+
+  </mat-card>
+
+  <mat-toolbar>자산</mat-toolbar>
+
+  <mat-table #table [dataSource]="dataSource" matSort>
+    <!-- coinName Column -->
+    <ng-container matColumnDef="coinName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Coin </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.coinName.toUpperCase()}} </mat-cell>
+    </ng-container>
+
+    <!-- avail Column -->
+    <ng-container matColumnDef="avail">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Available </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.avail}} </mat-cell>
+    </ng-container>
+
+    <!-- balance Column -->
+    <ng-container matColumnDef="balance">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> Balance </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.balance}} </mat-cell>
+    </ng-container>
+
+    <!-- maker Column -->
+    <ng-container matColumnDef="makerFee">
+      <mat-header-cell *matHeaderCellDef> Maker fee </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.makerFee}}
+      </mat-cell>
+    </ng-container>
+
+    <!-- taker Column -->
+    <ng-container matColumnDef="takerFee">
+      <mat-header-cell *matHeaderCellDef> Taker fee </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.takerFee}}
+      </mat-cell>
+    </ng-container>
+
+    <!-- deposit Column -->
+    <ng-container matColumnDef="deposit">
+      <mat-header-cell *matHeaderCellDef> Deposit </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-button style="padding:0px; min-width:30px;" (click)="depositAddress(element.coinName)" *ngIf="element.deposit">충전</button>
+      </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+
+
+</div>

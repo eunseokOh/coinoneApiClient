@@ -1,0 +1,25 @@
+<div style="width: 100%; position: relative; border-bottom : 0.5px solid rgba(200,200,200,.9);" align="right">
+  <div class="dropdown" align="center" (click)="movePage('trade')">
+    <button class="dropbtn" style="padding:16px;">Trade</button>
+  </div>
+
+  <div class="dropdown" style="margin-right:30px;" (mouseenter)="mouseEnter('userIcon')" (mouseleave)="mouseLeave('userIcon')"
+    align="left" (click)="movePage('user')">
+    <button class="dropbtn">{{userName}}
+      <i class="material-icons" style="position: absolute; right: 0px; top:50%; transform: translateY(-50%);">{{arrowicon.userIcon}}</i>
+    </button>
+    <div class="dropdown-content" *ngIf="coinoneList">
+      <a>
+        <i class="material-icons" style="font-size: 1rem; position: absolute; transform: translateY(10%); ">account_circle</i>
+        <span style="margin-left:1.4rem;">내 정보</span>
+      </a>
+      <a *ngFor="let c of coinoneList">
+
+        <span style="display: block;">{{c.coinName}}</span>
+        <span style="display: block;">{{numberComma(c.balance)}}</span>
+      </a>
+    </div>
+  </div>
+
+
+</div>

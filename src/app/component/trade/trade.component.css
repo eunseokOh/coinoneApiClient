@@ -1,0 +1,9 @@
+.es-grid-2{
+    display: inline-block;  box-sizing: border-box; padding:5px; color:gray;
+    width: 20%; font-weight: bold;
+  }
+
+  .es-grid-8{
+    display: inline-block;  box-sizing: border-box; padding:5px; color:gray;
+    width: 78%; font-weight: bold;
+  }

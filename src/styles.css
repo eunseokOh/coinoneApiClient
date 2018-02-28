@@ -1,1 +1,151 @@
 /* You can add global styles to this file, and also import other style files */
+/* 
+pink-bluegrey.css
+deeppurple-amber.css
+purple-green.css
+indigo-pink.css
+*/
+@import '~@angular/material/prebuilt-themes/pink-bluegrey.css';
+html,body{
+    background: black;
+
+	width:100%;
+	
+    margin:0px;
+    padding: 0px;
+    
+}
+
+
+.mat-toolbar{
+    margin:30px 0px 30px 0px;
+    background: #181B2A;
+    color:#C2CCE0;
+}
+
+.dropbtn {
+    background: none;
+    color: white;
+    padding: 16px 27px 16px 5px;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    min-width: 100px;
+}
+
+.dropbtn:active, .dropbtn:focus{
+    border: none;
+    outline: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+  
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: black;
+    min-width: 100px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    line-height: 20px;
+    width: auto;
+   
+    
+}
+
+
+.dropdown-content a {
+    color: white;
+    padding: 8px 12px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+    font-size: 0.9rem;
+    
+}
+.dropdown-content a:not(:last-child){
+    border-bottom: 1px solid rgba(200,200,200,.15);
+}
+
+.dropdown-content a:hover {background-color: rgba(200,200,200,.1)}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+app-root{
+    overflow-y: hidden !important;
+}
+
+mat-toolbar{
+    min-width: 1130px;
+}
+
+.mat-progress-spinner.mat-primary circle, .mat-spinner.mat-primary circle{
+    stroke: gray;
+}
+
+mat-header-row{
+    background: #181B2A;
+    border-bottom: 1px solid rgba(200,200,200,.7) !important;
+    
+  }
+  
+  mat-header-cell{
+    color: rgba(255,255,255,.55) !important;
+    font-size: 1rem !important;
+    box-sizing: border-box;
+  }
+  
+  mat-table{
+    width:100%;
+    min-width: 650px;
+    box-sizing: border-box;
+  }
+  /* mat-row:nth-child(even){
+    background: rgba(0,0,0,.95);
+  }
+  mat-row:nth-child(odd){
+    background: black;
+  } */
+  mat-row{
+    background: #181B2A;
+  }
+  
+  mat-cell{
+    color:white !important;
+    box-sizing: border-box;
+  }
+  
+  mat-row:not(:last-child){
+    border-bottom: 1px solid rgba(200,200,200,.7);
+  }
+
+  .mat-tab-label{
+    color:white;
+  }
+
+ .mat-tab-label-active{
+     background: transparent !important;
+     
+ }
+
+ .mat-dialog-container{
+     background: black;
+ }
+
+ .mat-snack-bar-container{
+     background: #030E1F !important;
+     color:white;
+ }
+
+ .mat-simple-snackbar-action {
+     color:#C2185B;
+     font-weight: bold;
+ }
+ 
+
