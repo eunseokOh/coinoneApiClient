@@ -1,7 +1,7 @@
 # Coinone Api Client
 
 - Angular cli version 1.5.3으로 제작되었습니다.
-- Coinone Api를 사용하여 나만의 홈페이지에서 내 정보, 시세조회, 주문을 할 수 있습니다.
+- Coinone Api를 사용하여 나만의 홈페이지에서 내 정보, 시세조회, 주문 할 수 있습니다.
 
 ## 사용법
 
